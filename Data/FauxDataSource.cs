@@ -14,7 +14,7 @@ namespace TriTechDemo.Data
 {
     public class FauxDataSource
     {
-        public ObservableCollection<Unit> _unitDataSource { get; set; }
+        private ObservableCollection<Unit> _unitDataSource { get; set; }
 
         public ICollectionView UnitDataSourceCollectionView { get; set; }
  
