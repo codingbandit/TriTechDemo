@@ -24,7 +24,7 @@ namespace TriTechDemo.Data
             int jobid = 5000;
             
             //generate a few thousand Units, with 1 detail(job) each
-            for (int i = 1; i <= 3000; i++)
+            for (int i = 1; i <= 50; i++)
             {
                 Random r = new Random(DateTime.Now.Millisecond);
                 Unit u = new Unit();
