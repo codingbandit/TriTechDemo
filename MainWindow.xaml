@@ -10,7 +10,7 @@
     </Window.Resources>
     <StackPanel Height="770" Width="780" Orientation="Vertical" x:Name="spMain" DataContext="{StaticResource vm}">
         <telerik:RadGridView x:Name="gvUnitGrid" ScrollMode="RealTime" Width="780" Height="700"  
-                             ItemsSource="{Binding DataSource.UnitDataSourceCollectionView, Mode=TwoWay}" 
+                             ItemsSource="{Binding DataSource.UnitViewSource.View}" 
                              AutoGenerateColumns="False"
                              RowIsExpandedChanged="GvUnitGrid_OnRowIsExpandedChanged">
             <telerik:RadGridView.Columns>

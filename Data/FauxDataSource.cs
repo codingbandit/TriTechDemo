@@ -15,12 +15,12 @@ namespace TriTechDemo.Data
     public class FauxDataSource
     {
         private ObservableCollection<Unit> _unitDataSource { get; set; }
-
-        public ICollectionView UnitDataSourceCollectionView { get; set; }
+        public CollectionViewSource UnitViewSource { get; set; }
  
         public FauxDataSource()
         {
             _unitDataSource = new ObservableCollection<Unit>();
+            
             int jobid = 5000;
             
             //generate a few thousand Units, with 1 detail(job) each
@@ -41,9 +41,11 @@ namespace TriTechDemo.Data
                 u.Jobs.Add(j);
                 _unitDataSource.Add(u);
             }
-
-            UnitDataSourceCollectionView = CollectionViewSource.GetDefaultView(_unitDataSource);
-
+            
+            UnitViewSource = new CollectionViewSource();
+            UnitViewSource.Source = _unitDataSource;
+            UnitViewSource.IsLiveFilteringRequested = true;
+            UnitViewSource.IsLiveSortingRequested = true;
         }
 
         private string RandomString(int size, bool lowerCase)
@@ -74,7 +76,6 @@ namespace TriTechDemo.Data
                     int idx = r.Next(0, _unitDataSource.Count - 1);
                     _unitDataSource[idx].UnitStatus = (Status) r.Next(1, 6);
                 }
-                UnitDataSourceCollectionView.Refresh(); //reapply sort descriptors
             }
         }
       
