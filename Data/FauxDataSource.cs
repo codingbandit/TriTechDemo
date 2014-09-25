@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Timers;
 using System.Windows.Data;
@@ -12,10 +13,17 @@ using System.Windows.Threading;
 
 namespace TriTechDemo.Data
 {
-    public class FauxDataSource
+    public class FauxDataSource : INotifyPropertyChanged
     {
+        private int _updateCount = 0;
         private ObservableCollection<Unit> _unitDataSource { get; set; }
         public CollectionViewSource UnitViewSource { get; set; }
+
+        public int UpdateCount
+        {
+            get { return _updateCount; }
+            set { _updateCount = value; NotifyPropertyChanged(); }
+        }
  
         public FauxDataSource()
         {
@@ -24,7 +32,7 @@ namespace TriTechDemo.Data
             int jobid = 5000;
             
             //generate a few thousand Units, with 1 detail(job) each
-            for (int i = 1; i <= 50; i++)
+            for (int i = 1; i <= 3000; i++)
             {
                 Random r = new Random(DateTime.Now.Millisecond);
                 Unit u = new Unit();
@@ -76,6 +84,17 @@ namespace TriTechDemo.Data
                     int idx = r.Next(0, _unitDataSource.Count - 1);
                     _unitDataSource[idx].UnitStatus = (Status) r.Next(1, 6);
                 }
+                UpdateCount++;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void NotifyPropertyChanged([CallerMemberName]string propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
       

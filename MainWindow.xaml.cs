@@ -32,7 +32,7 @@ namespace TriTechDemo
         {
             InitializeComponent();
             
-            _dataChangeTimer.Interval = TimeSpan.FromSeconds(3);
+            _dataChangeTimer.Interval = TimeSpan.FromMilliseconds(16);
             _dataChangeTimer.Tick += DataChangeTimerTick;
             _dataChangeTimer.Start();
 
