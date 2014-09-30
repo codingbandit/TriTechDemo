@@ -10,12 +10,14 @@
     </Window.Resources>
     <StackPanel Height="770" Width="780" Orientation="Vertical" x:Name="spMain" DataContext="{StaticResource vm}">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Foreground="Black" Text="Update Count: "/>
+            <TextBlock Foreground="Black" Text="Row Count: "/>
+            <TextBlock Foreground="Black" Text="{Binding ElementName=gvUnitGrid, Path=Items.Count}"/>
+            <TextBlock Foreground="Black" Margin="10 0 0 0" Text="Update Count: "/>
             <TextBlock Foreground="Black" Text="{Binding DataSource.UpdateCount}"/>
         </StackPanel>
         <telerik:RadGridView x:Name="gvUnitGrid" ScrollMode="RealTime" Width="780" Height="700"  
-                             ItemsSource="{Binding DataSource.UnitViewSource.View}" 
-                             AutoGenerateColumns="False"
+                             ItemsSource="{Binding DataSource.UnitViewSource.View}" Filtering="GvUnitGrid_OnFiltering"
+                             AutoGenerateColumns="False" Filtered="GvUnitGrid_OnFiltered"
                              RowIsExpandedChanged="GvUnitGrid_OnRowIsExpandedChanged">
             <telerik:RadGridView.Columns>
                 

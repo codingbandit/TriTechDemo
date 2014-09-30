@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Threading;
 
+using Telerik.Windows.Data;
 
 namespace TriTechDemo.Data
 {
@@ -27,7 +28,7 @@ namespace TriTechDemo.Data
  
         public FauxDataSource()
         {
-            _unitDataSource = new ObservableCollection<Unit>();
+            _unitDataSource = new ObservableCollection<Unit>(); ;
             
             int jobid = 5000;
             
@@ -54,6 +55,7 @@ namespace TriTechDemo.Data
             UnitViewSource.Source = _unitDataSource;
             UnitViewSource.IsLiveFilteringRequested = true;
             UnitViewSource.IsLiveSortingRequested = true;
+            UnitViewSource.LiveFilteringProperties.Add("UnitStatus");
         }
 
         private string RandomString(int size, bool lowerCase)
