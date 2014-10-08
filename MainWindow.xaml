@@ -14,11 +14,13 @@
             <TextBlock Foreground="Black" Text="{Binding ElementName=gvUnitGrid, Path=Items.Count}"/>
             <TextBlock Foreground="Black" Margin="10 0 0 0" Text="Update Count: "/>
             <TextBlock Foreground="Black" Text="{Binding DataSource.UpdateCount}"/>
+            <TextBlock Foreground="Black" Margin="10 0 0 0" Text="Freeze selection in place: "/>
+            <CheckBox  x:Name="cbFreezeRow" Checked="CbFreezeRow_OnChecked"/>
         </StackPanel>
         <telerik:RadGridView x:Name="gvUnitGrid" ScrollMode="RealTime" Width="780" Height="700"  
-                             ItemsSource="{Binding DataSource.UnitViewSource.View}" Filtering="GvUnitGrid_OnFiltering"
-                             AutoGenerateColumns="False" Filtered="GvUnitGrid_OnFiltered"
-                             RowIsExpandedChanged="GvUnitGrid_OnRowIsExpandedChanged">
+                             ItemsSource="{Binding DataSource.UnitViewSource.View}" 
+                             AutoGenerateColumns="False" Filtered="GvUnitGrid_OnFiltered" LayoutUpdated="GvUnitGrid_OnLayoutUpdated"
+                             RowIsExpandedChanged="GvUnitGrid_OnRowIsExpandedChanged" >
             <telerik:RadGridView.Columns>
                 
                 <telerik:GridViewDataColumn DataMemberBinding="{Binding Id}" Header="Id"/>
